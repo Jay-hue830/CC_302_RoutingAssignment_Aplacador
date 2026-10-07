@@ -15,9 +15,9 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 1;
 
   final List<Widget> _pages = const [
-    SamplePage(),
-    HomePage(),
-    ProfilePage(),
+    SamplePage(key: ValueKey<String>('sample')),
+    HomePage(key: ValueKey<String>('home')),
+    ProfilePage(key: ValueKey<String>('profile')),
   ];
 
   @override
@@ -28,8 +28,8 @@ class _MainScreenState extends State<MainScreen> {
           _currentIndex == 1
               ? 'Home'
               : _currentIndex == 2
-                  ? 'Profile'
-                  : 'Sample',
+              ? 'Profile'
+              : 'Sample',
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -39,12 +39,12 @@ class _MainScreenState extends State<MainScreen> {
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
         transitionBuilder: (child, animation) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
-        child: _pages[_currentIndex],
+        child: KeyedSubtree(
+          key: ValueKey<int>(_currentIndex),
+          child: _pages[_currentIndex],
+        ),
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,

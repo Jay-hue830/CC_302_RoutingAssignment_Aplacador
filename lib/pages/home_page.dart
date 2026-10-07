@@ -16,12 +16,12 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           const Text(
-            "Home Page",
-            style: TextStyle( fontSize: 24, 
-            fontWeight: FontWeight.bold),
-          
-          ),
-          const SizedBox(height: 20),
+            "Welcome Home",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, AppRoutes.details);
